@@ -1,5 +1,5 @@
 {% set name = "deffcode" %}
-{% set version = "0.2.6" %}
+{% set version = "0.2.7" %}
 
 package:
   name: {{ name|lower }}
@@ -7,12 +7,12 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/deffcode-{{ version }}.tar.gz
-  sha256: 7a3670c82a554316e3aafdcfd5755064fc0331b054817f8e6b7d81c549609692
+  sha256: c083f625291667f9794a3b3e53b16a46c14197ac36b1e443587b544c9ae0abea
 
 build:
   skip: true  # [py<38]
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 2
+  number: 0
 
 requirements:
   build:
