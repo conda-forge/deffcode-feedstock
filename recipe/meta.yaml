@@ -1,5 +1,6 @@
 {% set name = "deffcode" %}
 {% set version = "0.2.8" %}
+{% set python_min = "3.11" %}
 
 package:
   name: {{ name|lower }}
@@ -10,32 +11,33 @@ source:
   sha256: c14e62c0c522ac2c45bab436ad81483bba6fffd60e261a6e41752e9f78003091
 
 build:
-  skip: true  # [py<38]
+  noarch: python
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   number: 0
 
 requirements:
-  build:
-    - {{ compiler('c') }}
-    - {{ stdlib("c") }}
   host:
-    - python
+    - python {{ python_min }}
     - pip
-    - setuptools
+    - setuptools >=61.0
   run:
-    - python
+    - python >={{ python_min }}
     - cython
     - numpy
     - requests
     - colorlog
     - tqdm
+    - ffmpeg
 
 test:
   imports:
     - deffcode
   commands:
     - pip check
+    # on Linux and macOS, deffcode uses the ffmpeg on PATH
+    - python -c "import sys; from deffcode.ffhelper import get_valid_ffmpeg_path; sys.exit(0 if get_valid_ffmpeg_path() else 1)"  # [unix]
   requires:
+    - python {{ python_min }}
     - pip
 
 about:
