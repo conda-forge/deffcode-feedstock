@@ -1,5 +1,5 @@
 {% set name = "deffcode" %}
-{% set version = "0.2.8" %}
+{% set version = "0.2.9" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://files.pythonhosted.org/packages/source/{{ name[0] }}/{{ name }}/deffcode-{{ version }}.tar.gz
-  sha256: c14e62c0c522ac2c45bab436ad81483bba6fffd60e261a6e41752e9f78003091
+  sha256: 844cb5c53ea5cad2866b62cea6073422c7c5480dab2e09aac40c77985bc04b85
 
 build:
   noarch: python
